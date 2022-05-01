@@ -3,9 +3,8 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint'],
   extends: [
-    'airbnb',
-    'airbnb/hooks',
-    'airbnb-typescript',
+    'airbnb-base',
+    'airbnb-typescript/base',
     'plugin:import/recommended',
     'plugin:import/typescript',
     'prettier',
@@ -15,9 +14,5 @@ module.exports = {
     tsconfigRootDir: __dirname,
     sourceType: 'module',
   },
-  rules: {
-    'react/react-in-jsx-scope': 'off',
-    'import/prefer-default-export': 'off',
-    'react/function-component-definition': ['off'],
-  },
+  rules: {},
 };
