@@ -16,7 +16,7 @@
     "isolatedModules": true,
     "noEmit": true
   },
-  "include": ["index.ts", "routes.ts", "models/**/*"],
+  "include": ["index.ts", "routes.ts", "models/**/*", ".eslintrc.js"],
   "exclude": ["node_modules", "**/*.spec.ts"],
   "ts-node": {
     "compilerOptions": {

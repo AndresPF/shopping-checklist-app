@@ -10,16 +10,8 @@ connect('mongodb://localhost:27017/shopapp').then(() => {
 
   app.use('/api', routes);
 
-  app.get('/test', (_, res) => {
-    res.send({ data: 'Different Message' });
-  });
-
-  app.get('/test/:message', function (req, res) {
-    const { message } = req.params;
-    res.send(`POST request with message: ${message}`);
-  });
-
   app.listen(port, () => {
+    // eslint-disable-next-line no-console
     console.log(`Server running on ${port}`);
   });
 });

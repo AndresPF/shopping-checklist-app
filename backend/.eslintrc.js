@@ -14,5 +14,8 @@ module.exports = {
     tsconfigRootDir: __dirname,
     sourceType: 'module',
   },
-  rules: {},
+  rules: {
+    'import/prefer-default-export': 'off',
+    'no-underscore-dangle': 'off',
+  },
 };

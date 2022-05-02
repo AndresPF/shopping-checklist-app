@@ -1,6 +1,7 @@
 import { Router } from 'express';
-import { Item, List } from './models';
 import { Types } from 'mongoose';
+import { Item, List } from './models';
+
 const router = Router();
 
 router.get('/items', async (req, res) => {
@@ -79,9 +80,12 @@ router.delete('/items/:itemId', async (req, res) => {
     const item = await Item.findById(req.params.itemId).orFail();
     const list = await List.findById(item.list).orFail();
     const index = list.items.indexOf(item._id);
+
+    await item.delete();
+
     list.items.splice(index, 1);
     await list.save();
-    item.delete();
+
     res.status(204).send();
   } catch (errorData) {
     res
@@ -148,10 +152,8 @@ router.patch('/lists/:listId', async (req, res) => {
 
 router.delete('/lists/:listId', async (req, res) => {
   try {
-    const list = await List.findByIdAndDelete(req.params.listId).orFail();
-    const items = await Item.find({ list: req.params.listId })
-      .remove()
-      .orFail();
+    await List.findByIdAndDelete(req.params.listId).orFail();
+    await Item.find({ list: req.params.listId }).remove().orFail();
 
     res.status(204).send();
   } catch (errorData) {

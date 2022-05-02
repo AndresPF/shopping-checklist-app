@@ -1,5 +1,4 @@
 import { Schema, model, Types } from 'mongoose';
-import { v4 as uuidv4 } from 'uuid';
 
 interface TItem {
   _id: Schema.Types.ObjectId;
