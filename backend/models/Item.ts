@@ -1,21 +1,21 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model, Types } from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';
 
 interface TItem {
-  _id?: string;
+  _id: Schema.Types.ObjectId;
   title: string;
   quantity: string;
   purchased: boolean;
-  list: string;
+  list: Schema.Types.ObjectId;
 }
 
 const itemSchema = new Schema<TItem>(
   {
-    _id: { type: String, default: uuidv4() },
+    _id: { type: Schema.Types.ObjectId, default: new Types.ObjectId() },
     title: { type: String, required: true },
     quantity: { type: String, default: '1' },
     purchased: { type: Boolean, default: false },
-    list: { type: String, required: true },
+    list: { type: Schema.Types.ObjectId, ref: 'ShopList', required: true },
   },
   { timestamps: true }
 );
