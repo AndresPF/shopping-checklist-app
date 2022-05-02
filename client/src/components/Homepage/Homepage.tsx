@@ -1,13 +1,20 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import logo from '../../assets/logo.svg';
+import { listMock, TListMock } from '../../mocks/listMock';
 import './Homepage.scss';
 
 export const Homepage = () => {
+  const [shopLists, setShopLists] = useState<TListMock>([]);
   useEffect(() => {
-    fetch('/test')
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+    // fetch('/test')
+    //   .then((res) => res.json())
+    //   .then((data) => console.log(data));
+    setTimeout(() => {
+      setShopLists(listMock);
+    }, 3000);
   }, []);
+
+  console.log(shopLists);
 
   return (
     <div className="Homepage">
