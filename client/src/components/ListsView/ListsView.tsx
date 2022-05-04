@@ -38,9 +38,9 @@ export const ListsView = ({ lists }: ListViewProps) => {
   return (
     <div className="container-fluid flex-column align-items-center justify-flex-center">
       <div className="row">
-        <div className="col">
-          <h2>Lists</h2>
-          <div className="list-group">
+        <div className="col py-4">
+          <h2 className="py-1">Lists</h2>
+          <div className="list-group py-2">
             {lists.map((list) => (
               <ListsViewItem
                 key={list._id}

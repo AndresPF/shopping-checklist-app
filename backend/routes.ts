@@ -153,7 +153,7 @@ router.patch('/lists/:listId', async (req, res) => {
 router.delete('/lists/:listId', async (req, res) => {
   try {
     await List.findByIdAndDelete(req.params.listId).orFail();
-    await Item.find({ list: req.params.listId }).remove().orFail();
+    await Item.find({ list: req.params.listId }).deleteMany();
 
     res.status(204).send();
   } catch (errorData) {

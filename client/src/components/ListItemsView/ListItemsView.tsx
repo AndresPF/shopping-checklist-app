@@ -1,7 +1,10 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   useAddItemMutation,
+  useDeleteListMutation,
   useGetListQuery,
+  useGetListsQuery,
   useUpdateItemMutation,
 } from '../../store/api';
 import { TPopulatedList } from '../types';
@@ -62,24 +65,34 @@ export const ListItemsView = ({
   items,
 }: Pick<TPopulatedList, '_id' | 'title' | 'items'>) => {
   const { refetch } = useGetListQuery(_id);
+  const { refetch: refetchLists } = useGetListsQuery();
   const [addItem] = useAddItemMutation();
   const [newItem, setNewItem] = useState(false);
   const [itemName, setItemName] = useState('');
   const [itemQuantity, setItemQuantity] = useState('');
+  const [deleteList] = useDeleteListMutation();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await addItem({ title: itemName, quantity: itemQuantity, id: _id });
     setNewItem(false);
     refetch();
+    refetchLists();
+  };
+
+  const handleDeleteList = async () => {
+    await deleteList(_id);
+    navigate('/lists', { replace: true });
+    refetchLists();
   };
 
   return (
     <div className="container-fluid flex-column align-items-center justify-flex-center">
       <div className="row">
-        <div className="col">
-          <h2>{title}</h2>
-          <div className="list-group">
+        <div className="col py-4">
+          <h2 className="py-1">{title}</h2>
+          <div className="list-group py-2">
             <div className="list-group-item list-group-item-primary border-secondary p-0 px-3 d-flex justify-content-between align-items-center">
               <span className="col-7 py-1 text-start">Title</span>
               <span className="col-3 py-1 border-start border-end border-secondary">
@@ -142,6 +155,57 @@ export const ListItemsView = ({
                 Create New Item
               </button>
             )}
+          </div>
+          <button
+            type="button"
+            className="btn btn-danger btn-sm mt-5"
+            data-bs-toggle="modal"
+            data-bs-target="#listDeleteModal"
+          >
+            Delete list
+          </button>
+          <div
+            className="modal fade"
+            id="listDeleteModal"
+            tabIndex={-1}
+            aria-labelledby="modalTile"
+            aria-hidden="true"
+          >
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title" id="modalTile">
+                    Modal title
+                  </h5>
+                  <button
+                    type="button"
+                    className="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  />
+                </div>
+                <div className="modal-body">
+                  <p>Are you sure you want to delete this list?</p>
+                </div>
+                <div className="modal-footer">
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-danger"
+                    onClick={() => handleDeleteList()}
+                    data-bs-dismiss="modal"
+                  >
+                    Delete list
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
