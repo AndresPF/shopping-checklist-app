@@ -24,4 +24,54 @@ export type TListMock = {
   createdAt: string;
   updatedAt: string;
   __v: number;
-}[];
+};
+
+export const populatedListMock = {
+  _id: '626f60728ced66da7dc5a6b1',
+  title: 'La Mala',
+  items: [
+    {
+      _id: '626f60b68ced66da7dc5a6c0',
+      title: 'Chelas',
+      quantity: '6',
+      purchased: false,
+      list: '626f60728ced66da7dc5a6b1',
+      createdAt: '2022-05-02T04:40:22.583Z',
+      updatedAt: '2022-05-02T04:40:22.583Z',
+      __v: 0,
+    },
+    {
+      _id: '626f60bc8ced66da7dc5a6c4',
+      title: 'Gansitos',
+      quantity: '6',
+      purchased: false,
+      list: '626f60728ced66da7dc5a6b1',
+      createdAt: '2022-05-02T04:40:28.512Z',
+      updatedAt: '2022-05-02T04:40:28.512Z',
+      __v: 0,
+    },
+  ],
+  createdAt: '2022-05-02T04:39:14.654Z',
+  updatedAt: '2022-05-02T04:40:28.515Z',
+  __v: 2,
+};
+
+export type TPopulatedListMock = {
+  _id: string;
+  title: string;
+  items: TListItem[];
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+};
+
+export type TListItem = {
+  _id: string;
+  title: string;
+  quantity: string;
+  purchased: boolean;
+  list: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+};

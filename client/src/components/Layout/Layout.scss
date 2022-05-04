@@ -1,7 +1,32 @@
 .Layout {
-  background-color: rgb(22, 1, 80);
-  color: #fff;
-  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   box-sizing: border-box;
   width: 100%;
+  min-height: 100vh;
+
+  &-header {
+    box-sizing: border-box;
+    padding: 5px;
+    width: 100%;
+    background-color: rgb(22, 1, 80);
+    color: #fff;
+
+    .header-title {
+      width: 100%;
+      text-align: center;
+      font-weight: 700;
+      font-size: 2.25rem;
+    }
+
+    .header-nav {
+      width: 100%;
+    }
+  }
+
+  .content {
+    width: 100%;
+  }
 }

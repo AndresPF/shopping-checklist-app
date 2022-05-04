@@ -3,10 +3,13 @@ import './Layout.scss';
 
 export const Layout = () => (
   <div className="Layout">
-    <h1>ShopApp</h1>
-    <nav>
-      <Link to="/">Home</Link>
-    </nav>
+    <header className="Layout-header">
+      <h1 className="header-title">ShopApp</h1>
+      <nav>
+        <Link to="/">Home</Link>
+        <Link to="/lists">Lists</Link>
+      </nav>
+    </header>
     <div className="content">
       <Outlet />
     </div>

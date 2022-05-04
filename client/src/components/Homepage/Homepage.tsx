@@ -1,37 +1,7 @@
-import { useEffect, useState } from 'react';
-import logo from '../../assets/logo.svg';
-import { listMock, TListMock } from '../../mocks/listMock';
 import './Homepage.scss';
 
-export const Homepage = () => {
-  const [shopLists, setShopLists] = useState<TListMock>([]);
-  useEffect(() => {
-    // fetch('/test')
-    //   .then((res) => res.json())
-    //   .then((data) => console.log(data));
-    setTimeout(() => {
-      setShopLists(listMock);
-    }, 3000);
-  }, []);
-
-  console.log(shopLists);
-
-  return (
-    <div className="Homepage">
-      <header className="Homepage-header">
-        <img src={logo} className="Homepage-logo" alt="logo" />
-        <p>
-          Edit <code>src/Homepage.tsx</code> and save to reload.
-        </p>
-        <a
-          className="Homepage-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-};
+export const Homepage = () => (
+  <div className="Homepage">
+    <h1>Welcome!</h1>
+  </div>
+);
