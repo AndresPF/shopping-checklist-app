@@ -1,7 +1,6 @@
 import { FormEvent, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { useGetListQuery } from '../../store/api';
-import './List.scss';
+import { TPopulatedListMock } from '../../mocks/listMock';
+import './ListItemsView.scss';
 
 type ListItemProps = {
   title: string;
@@ -17,30 +16,22 @@ const ListItem = ({ title, quantity, purchased }: ListItemProps) => (
   </div>
 );
 
-export const List = () => {
+export const ListItemsView = ({
+  title,
+  items,
+}: Pick<TPopulatedListMock, 'title' | 'items'>) => {
   const [newItem, setNewItem] = useState(false);
-  const params = useParams();
-  const { data, error, isLoading, isSuccess, isError } = useGetListQuery(
-    params.listId || ''
-  );
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
-
-  if (isLoading) return <div>Loading...</div>;
-  console.log(error, isSuccess, isError);
-  if (!data || isError) return <div>Something went wrong!</div>;
-
   return (
     <div className="container-fluid flex-column align-items-center justify-flex-center">
       <div className="row">
         <div className="col">
-          <h2>
-            Param ID: {params.listId} | Title: {data.title}
-          </h2>
+          <h2>{title}</h2>
           <div className="list-group">
-            {data.items.map((item) => (
+            {items.map((item) => (
               <ListItem
                 key={item._id}
                 title={item.title}

@@ -1,8 +1,8 @@
-import { ListView } from '../ListView/ListView';
-import './Lists.scss';
-import { useGetListsQuery } from '../../store/api';
+import { ListsView } from '../../ListsView/ListsView';
+import './ListsPage.scss';
+import { useGetListsQuery } from '../../../store/api';
 
-export const Lists = () => {
+export const ListsPage = () => {
   const { data, isLoading, isError } = useGetListsQuery();
 
   if (isLoading) return <div>Loading...</div>;
@@ -10,7 +10,7 @@ export const Lists = () => {
 
   return (
     <div className="ListsPage">
-      <ListView lists={data} />
+      <ListsView lists={data} />
     </div>
   );
 };

@@ -2,12 +2,12 @@ import { FormEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { TListMock } from '../../mocks/listMock';
 import 'bootstrap';
-import './ListView.scss';
+import './ListsView.scss';
 
 type ListViewProps = { lists: TListMock[] };
 type ListItemProps = Pick<TListMock, '_id' | 'title' | 'items'>;
 
-const ListViewItem = ({ _id, title, items }: ListItemProps) => (
+const ListsViewItem = ({ _id, title, items }: ListItemProps) => (
   <Link
     className="list-group-item d-flex justify-content-between align-items-center"
     to={_id}
@@ -21,7 +21,7 @@ const ListViewItem = ({ _id, title, items }: ListItemProps) => (
   </Link>
 );
 
-export const ListView = ({ lists }: ListViewProps) => {
+export const ListsView = ({ lists }: ListViewProps) => {
   const [showNewListForm, setShowNewListForm] = useState(false);
   const [listName, setListName] = useState('');
 
@@ -37,7 +37,7 @@ export const ListView = ({ lists }: ListViewProps) => {
           <h2>Lists</h2>
           <div className="list-group">
             {lists.map((list) => (
-              <ListViewItem
+              <ListsViewItem
                 key={list._id}
                 _id={list._id}
                 title={list.title}
