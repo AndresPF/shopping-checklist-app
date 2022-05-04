@@ -1,11 +1,12 @@
 import { FormEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { TListMock } from '../../mocks/listMock';
+import { TList } from '../types';
 import 'bootstrap';
 import './ListsView.scss';
+import { useAddListMutation, useGetListsQuery } from '../../store/api';
 
-type ListViewProps = { lists: TListMock[] };
-type ListItemProps = Pick<TListMock, '_id' | 'title' | 'items'>;
+type ListViewProps = { lists: TList[] };
+type ListItemProps = Pick<TList, '_id' | 'title' | 'items'>;
 
 const ListsViewItem = ({ _id, title, items }: ListItemProps) => (
   <Link
@@ -22,12 +23,16 @@ const ListsViewItem = ({ _id, title, items }: ListItemProps) => (
 );
 
 export const ListsView = ({ lists }: ListViewProps) => {
+  const { refetch } = useGetListsQuery();
+  const [addList] = useAddListMutation();
   const [showNewListForm, setShowNewListForm] = useState(false);
   const [listName, setListName] = useState('');
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    console.log(listName);
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    await addList(listName);
+    setShowNewListForm(false);
+    refetch();
   };
 
   return (

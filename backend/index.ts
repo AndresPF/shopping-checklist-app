@@ -1,5 +1,6 @@
 import express, { json } from 'express';
 import { connect } from 'mongoose';
+import cors from 'cors';
 import routes from './routes';
 
 connect('mongodb://localhost:27017/shopapp').then(() => {
@@ -7,12 +8,7 @@ connect('mongodb://localhost:27017/shopapp').then(() => {
   const app = express();
 
   app.use(json());
-  app.use((_req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'X-Requested-With');
-    next();
-  });
-
+  app.use(cors());
   app.use('/api', routes);
 
   app.listen(port, () => {

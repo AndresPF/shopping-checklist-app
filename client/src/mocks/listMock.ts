@@ -17,15 +17,6 @@ export const listMock = [
   },
 ];
 
-export type TListMock = {
-  _id: string;
-  title: string;
-  items: string[];
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-};
-
 export const populatedListMock = {
   _id: '626f60728ced66da7dc5a6b1',
   title: 'La Mala',
@@ -54,24 +45,4 @@ export const populatedListMock = {
   createdAt: '2022-05-02T04:39:14.654Z',
   updatedAt: '2022-05-02T04:40:28.515Z',
   __v: 2,
-};
-
-export type TPopulatedListMock = {
-  _id: string;
-  title: string;
-  items: TListItem[];
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-};
-
-export type TListItem = {
-  _id: string;
-  title: string;
-  quantity: string;
-  purchased: boolean;
-  list: string;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
 };

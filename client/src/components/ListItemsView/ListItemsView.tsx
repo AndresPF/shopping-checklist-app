@@ -1,5 +1,5 @@
 import { FormEvent, useState } from 'react';
-import { TPopulatedListMock } from '../../mocks/listMock';
+import { TPopulatedList } from '../types';
 import './ListItemsView.scss';
 
 type ListItemProps = {
@@ -19,8 +19,10 @@ const ListItem = ({ title, quantity, purchased }: ListItemProps) => (
 export const ListItemsView = ({
   title,
   items,
-}: Pick<TPopulatedListMock, 'title' | 'items'>) => {
+}: Pick<TPopulatedList, 'title' | 'items'>) => {
   const [newItem, setNewItem] = useState(false);
+  const [itemName, setItemName] = useState('');
+  const [itemQuantity, setItemQuantity] = useState('');
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -47,7 +49,18 @@ export const ListItemsView = ({
                       type="text"
                       className="form-control"
                       placeholder="New Item Name"
-                      aria-label="New Item name with two buttons (cancel or create)"
+                      aria-label="New Item Input"
+                      value={itemName}
+                      onChange={(e) => setItemName(e.target.value)}
+                      required
+                    />
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Quantity"
+                      aria-label="New Item Quantity"
+                      value={itemQuantity}
+                      onChange={(e) => setItemQuantity(e.target.value)}
                       required
                     />
                     <button
