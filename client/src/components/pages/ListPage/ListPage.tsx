@@ -12,7 +12,7 @@ export const ListPage = () => {
 
   return (
     <div className="ListPage">
-      <ListItemsView title={data.title} items={data.items} />
+      <ListItemsView _id={data._id} title={data.title} items={data.items} />
     </div>
   );
 };

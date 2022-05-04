@@ -43,7 +43,7 @@ export const shopApi = createApi({
         body: { title, quantity, listId: id },
       }),
     }),
-    updateItem: builder.mutation<void, TListItem>({
+    updateItem: builder.mutation<void, Partial<TListItem>>({
       query: ({ _id, ...rest }) => ({
         url: `items/${_id}`,
         method: 'PATCH',
