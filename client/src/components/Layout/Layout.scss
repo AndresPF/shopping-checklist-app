@@ -1,3 +1,5 @@
+@import '~bootstrap/scss/bootstrap';
+
 .Layout {
   display: flex;
   flex-direction: column;
@@ -8,11 +10,7 @@
   min-height: 100vh;
 
   &-header {
-    box-sizing: border-box;
-    padding: 5px;
     width: 100%;
-    background-color: rgb(22, 1, 80);
-    color: #fff;
 
     .header-title {
       width: 100%;
