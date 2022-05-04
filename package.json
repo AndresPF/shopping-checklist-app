@@ -1,0 +1,35 @@
+{
+  "name": "shopping-checklist-app",
+  "version": "1.0.0",
+  "description": "shopping-checklist-app",
+  "main": "index.js",
+  "scripts": {
+    "start:server": "npm run start -w backend",
+    "start:client": "npm run start -w client",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndresPF/shopping-checklist-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndresPF/shopping-checklist-app/issues"
+  },
+  "homepage": "https://github.com/AndresPF/shopping-checklist-app#readme",
+  "workspaces": [
+    "client",
+    "backend"
+  ],
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.20.0",
+    "@typescript-eslint/parser": "^5.20.0",
+    "eslint": "^8.14.0",
+    "eslint-config-airbnb-base-typescript": "^1.0.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "typescript": "^4.6.3"
+  }
+}
