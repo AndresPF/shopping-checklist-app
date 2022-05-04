@@ -1,9 +1,12 @@
 import express, { json } from 'express';
 import { connect } from 'mongoose';
+import 'dotenv/config';
 import cors from 'cors';
 import routes from './routes';
 
-connect('mongodb://localhost:27017/shopapp').then(() => {
+connect(
+  `mongodb+srv://andrespf:${process.env.DB_PASSWORD}@cluster-apf.vtn7b.mongodb.net/shopapp?retryWrites=true&w=majority`
+).then(() => {
   const port = 3200;
   const app = express();
 
